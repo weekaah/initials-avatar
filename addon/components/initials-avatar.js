@@ -5,7 +5,7 @@ import { isPresent } from '@ember/utils';
 import { htmlSafe } from '@ember/string';
 
 export default Component.extend({
-  classNameBindings: [':initialsAvatar', 'avatarColor'],
+  classNameBindings: ['className', 'avatarColorClassName'],
   attributeBindings: ['style'],
 
   firstName: '',
@@ -15,6 +15,8 @@ export default Component.extend({
   image: '',
   colorIndex: 1,
   maxColorIndex: 1,
+  className: 'initialsAvatar',
+  colorClassName: 'avatarColor',
 
   hasImage: notEmpty('image'),
 
@@ -43,9 +45,11 @@ export default Component.extend({
     return null;
   }),
 
-  avatarColor: computed('maxColorIndex', 'colorIndex', function() {
-    let index = this.get('colorIndex');
-    index = (index - 1) % this.get('maxColorIndex') + 1;
-    return `avatarColor-${index}`;
+
+  avatarColorClassName: computed('maxColorIndex', 'colorIndex', 'colorClassName', function() {
+    const index = (this.get('colorIndex') - 1) % this.get('maxColorIndex') + 1;
+    const colorClassName = this.get('colorClassName');
+
+    return `${colorClassName}-${index}`;
   })
 });
