@@ -53,6 +53,19 @@ your different initials avatars:
 }}
 ```
 
+You can override default color classes with:
+
+```hbs
+{{initials-avatar
+  ...
+  className="avatar"
+  colorClassName="avatar-color"
+}}
+```
+
+This will add custom css class "avatar avatar-1" to the component.
+
+
 You can use a background-color directly you can pass in a `color` property.
 This is useful if you want to generate colors from unique strings like emails or ids.
 This background-color style will only be applied if `image` is a "falsy" value:
